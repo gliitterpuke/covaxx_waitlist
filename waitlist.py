@@ -32,6 +32,7 @@ while True:
             prev_ver[url] = soup
             FirstRun = False
             print ("Start Monitoring "+url+ ""+ str(datetime.now()))
+            webhook.send("Start Monitoring "+url+ ""+ str(datetime.now()))
         else:
           OldPage = prev_ver[url].splitlines()
           NewPage = soup.splitlines()
