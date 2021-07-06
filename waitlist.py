@@ -40,7 +40,7 @@ while True:
           if prev_ver[url] == "":
             prev_ver[url] = soup
             print('Second URL filled')
-          elif "已額滿" in soup:
+          elif "已額滿" not in soup:
             # print ("Changes detected at: "+ str(datetime.now()))
             print('Open')
             OldPage = NewPage
@@ -51,7 +51,7 @@ while True:
             print('Full')
             OldPage = NewPage
             prev_ver[url] = soup
-            webhook.send('Waitlist probably filled @' + url')
+            webhook.send('Waitlist probably filled @' + url)
     else:
         print( "No Changes "+ str(datetime.now()))
     time.sleep(5)
