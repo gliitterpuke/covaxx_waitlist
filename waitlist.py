@@ -35,22 +35,23 @@ while True:
         else:
           OldPage = prev_ver[url].splitlines()
           NewPage = soup.splitlines()
+          # fill values of subsequent urls
           if prev_ver[url] == "":
             prev_ver[url] = soup
             print('Second URL filled')
-          elif "已額滿" not in soup:
+          elif "已額滿" in soup:
             # print ("Changes detected at: "+ str(datetime.now()))
             print('Open')
             OldPage = NewPage
             prev_ver[url] = soup
             #send msg in waitlist-notifications channel
-            webhook.send("Possible opening @")
+            webhook.send("Possible opening @" + url + "!")
           else:
-            print('Full!')
+            print('Full')
             OldPage = NewPage
             prev_ver[url] = soup
-            # webhook.send("Full")
+            webhook.send('Waitlist probably filled @' + url')
     else:
         print( "No Changes "+ str(datetime.now()))
-    time.sleep(10)
+    time.sleep(5)
     continue
