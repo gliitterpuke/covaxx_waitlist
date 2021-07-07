@@ -5,7 +5,7 @@ from datetime import datetime
 from discord import Webhook, RequestsWebhookAdapter
 from re import search
 
-urls = ["https://wapps.mmh.org.tw/webhealthnumber/EMWAITdefault.aspx?HOSP=1WAIT", "https://www.csh.com.tw/index-3-1.php"]
+urls = ["https://wapps.mmh.org.tw/webhealthnumber/EMWAITdefault.aspx?HOSP=1WAIT", "https://www.csh.com.tw/index-3-1.php", "https://docs.google.com/forms/d/e/1FAIpQLSfpTN57Y0t2l-AKf8aRSngd-HzGA0tjbDBfIpRzhQxVWNELEQ/closedform"]
 # target URL
 # url = "http://redcap.ntuh.gov.tw/surveys/?__dashboard=9NTNTRYKXXH", "https://www6.vghtpe.gov.tw/reg/c19vaccLine.do"
 # act like a browser
@@ -38,7 +38,7 @@ while True:
           # fill values of subsequent urls
           if prev_ver[url] == "":
             prev_ver[url] = soup
-            print('Second URL filled')
+            print('URL filled')
           elif "已額滿" not in soup:
             # print ("Changes detected at: "+ str(datetime.now()))
             print('Open')
@@ -50,7 +50,7 @@ while True:
             print('Full')
             OldPage = NewPage
             prev_ver[url] = soup
-            webhook.send('Waitlist probably filled @' + url)
+            webhook.send('Change in waitlist sit (full?) @' + url)
     else:
         print( "No Changes "+ str(datetime.now()))
     time.sleep(5)
